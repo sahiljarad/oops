@@ -1,0 +1,88 @@
+// Java program to add , subtract, multiply and divide two complex numbers using Class
+import java.util.*;
+// User Defined Complex class Complex.java file
+public class Complex
+{
+int real, imaginary; // Declaring variables
+public Complex() //default constructor
+{
+real =0;
+imaginary = 0;
+}
+public Complex(int real, int imaginary)// parameterized constructor
+{
+this.real = real;
+this.imaginary = imaginary;
+}
+// Defining addComplex() method for adding two complex number
+Complex addComplex(Complex C1, Complex C2)
+{
+Complex temp = new Complex(); // temporary variable
+temp.real = C1.real + C2.real;
+temp.imaginary = C1.imaginary + C2.imaginary;
+return temp;// returning the sum
+}
+// Defining subtractComplex() method for subtracting two complex number
+Complex subtractComplex(Complex C1, Complex C2)
+{
+Complex temp = new Complex(); // temporary variable
+temp.real = C1.real - C2.real;
+temp.imaginary = C1.imaginary - C2.imaginary;
+return temp;// returning the sum
+}
+// Defining multiplyComplex() method for multiply two complex number
+Complex multiplyComplex(Complex C1, Complex C2)
+{
+Complex temp = new Complex(); // temporary variable
+temp.real = (C1.real * C2.real) - (C1.imaginary * C2.imaginary);
+temp.imaginary = (C1.real * C2.imaginary) + (C1.imaginary * C2.real);
+return temp;// returning the sum
+}
+
+/* Defining divideComplex() method for multiply two complex number
+Define the method div (c1, c2) as (a+ib)/(c+id) and stores the quotient c3 as
+{(ac+bd)/(c^2+d^2)} +i{(bc-ad)/(c^2+d^2)}
+*/
+Complex divideComplex(Complex C1, Complex C2)
+{
+Complex temp = new Complex(); // temporary variable
+temp.real = ( (C1.real * C2.real) +(C1.imaginary * C2.imaginary) )
+/
+( (C2.real * C2.real) +(C2.imaginary * C2.imaginary));
+temp.imaginary = ( (C1.imaginary * C2.real) - (C1.real * C2.imaginary) )
+/
+( (C2.real * C2.real) +(C2.imaginary * C2.imaginary));
+return temp;// returning the sum
+}
+// Function for printing complex number
+void printComplex()
+{
+System.out.println("Complex number: " + real + " + " + imaginary + "i");
+}
+}
+// Main Class TestComplex.java file
+public class TestComplex
+{
+public static void main(String[] args)
+{
+Complex C1 = new Complex(3, 2);
+Complex C2 = new Complex(9, 5);
+Complex C3 = new Complex();
+System.out.println("Complex number 1 is");
+C1.printComplex();
+System.out.println("Complex number 2 is");
+C2.printComplex();
+C3 = C3.addComplex(C1, C2);
+System.out.print("c3 = c1 + c2 ");
+C3.printComplex();
+C3 = C3.subtractComplex(C1, C2);
+System.out.print("c3 = c1 - c2 ");
+C3.printComplex();
+C3 = C3.multiplyComplex(C1, C2);
+System.out.print("c3 = c1 * c2 ");
+C3.printComplex();
+C3 = C3.divideComplex(C1, C2);
+System.out.print("c3 = c1 / c2 ");
+C3.printComplex();
+}
+}

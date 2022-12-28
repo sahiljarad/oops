@@ -1,0 +1,246 @@
+Aim:
+ Design and develop a context for given case study and implement an interface for Vehicles
+Consider the example of vehicles like bicycle, car, and bike. All Vehicles have common
+functionalities such as Gear Change, Speed up and apply breaks. Make an interface and put all
+these common functionalities. Bicycle, Bike, Car classes should be implemented for all these
+functionalities in their own class in their own way.
+Objective:
+ To understand Interface in Java
+Theory:
+An interface in Java:
+An Interface in Java programming language is defined as an abstract type used to specify
+the behavior of a class. An interface in Java is a blueprint of a class. A Java interface contains
+static constants and abstract methods.
+Program:
+//File Vehicle.java
+package exp3;
+public interface Vehicle
+{
+public void gearChange(int a);
+public void speedUp();
+public void applyBrakes();
+public void display();
+}
+
+//File Bicycle.java
+package exp3;
+public class Bicycle implements Vehicle
+{
+int gear,speed;
+public Bicycle() //default constructor for bicycle
+{
+System.out.println("\tBicycle started successfully\n ");
+gear=1; //gear is 1 when Cycle starts
+speed=10; //speed is 10 when Cycle Starts
+}
+public void gearChange(int a)
+{
+if(a < 7 && a > 0) //maximum gear for vehicle is 6
+{
+gear = a;
+System.out.println("Gear changed Success fully");
+}
+else
+System.out.println("Gear is Out Of Range \n");
+}
+public void speedUp()
+{
+if((speed+5) < 25 )
+{ //25 as maximum speed
+speed += 5;
+System.out.println("Bicycles speed increased ");
+}
+else
+System.out.println("Speed Cannot Be Increased Above 25");
+}
+public void applyBrakes() //function to apply brakes
+{
+if( (speed-5) > 0) // speed never be negative
+{
+speed -= 5; //per apply brakes bicycles speed is reduced by 5
+System.out.println("Speed Reduced Successfull");
+}
+else
+{
+speed = 0;
+gear= 0;
+System.out.println("Bicycle stopped Successfully\n ");
+}
+}
+public void display() //displays current status of bicycle
+{
+System.out.println("BICYCLE'S SPEED IS =" + speed +"Kmhr AND GEAR IS ="+ gear);
+}
+}
+
+//File Car.java
+package exp3;
+public class Car implements Vehicle
+{
+int gear,speed;
+public Car() //default constructor for Car
+{
+System.out.println("\tCar started successfully\n ");
+gear=1; //gear is 1 when Car starts
+speed=10; //speed is 10 when Car Starts
+}
+public void gearChange(int a)
+{
+if(a < 6 && a > 0) //maximum gear for vehicle is 5
+{
+gear = a;
+System.out.println("Car Gear changed Success fully");
+}
+else
+System.out.println("Car Gear is Out Of Range \n");
+}
+public void speedUp()
+{
+if((speed + 5) < 125 )
+{ //125 as maximum speed
+speed += 5;
+System.out.println("Car speed increased ");
+}
+else
+System.out.println("Car Speed Cannot Be Increased Above 125");
+}
+public void applyBrakes() //function to apply brakes
+{
+if( (speed-5) > 0) // speed never be negative
+{
+speed -= 5; //per apply brakes Car speed is reduced by 5
+System.out.println("Car Speed Reduced Successfull");
+}
+else
+{
+speed = 0;
+gear= 0;
+System.out.println("Car stopped Successfully\n ");
+}
+}
+public void display() //displays current status of bicycle
+{
+System.out.println("Car SPEED IS =" + speed +"Kmhr AND GEAR IS ="+ gear);
+}
+}
+
+//File Bike.java
+package exp3;
+public class Bike implements Vehicle
+{
+int gear,speed;
+public Bike() //default constructor for Bike
+{
+System.out.println("\tBike started successfully\n ");
+gear=1; //gear is 1 when Bike starts
+speed=10; //speed is 10 when Bike Starts
+}
+public void gearChange(int a)
+{
+if(a < 5 && a > 0) //maximum gear for vehicle is 4
+{
+gear = a;
+System.out.println("Bike Gear changed Success fully");
+}
+else
+System.out.println("Bike Gear is Out Of Range \n");
+}
+public void speedUp()
+{
+if((speed + 5) < 65 )
+{ //65 as maximum speed
+speed += 5;
+System.out.println("Bike speed increased ");
+}
+else
+System.out.println("Speed Cannot Be Increased Above 65");
+}
+public void applyBrakes() //function to apply brakes
+{
+if( (speed-5) > 0) // speed never be negative
+{
+speed -= 5; //per apply brakes Bike speed is reduced by 5
+System.out.println("Bike Speed Reduced Successfull");
+}
+else
+{
+speed = 0;
+gear= 0;
+System.out.println("Bike stopped Successfully\n ");
+}
+}
+public void display() //displays current status of bicycle
+{
+System.out.println("Bike SPEED IS =" + speed +"Kmhr AND GEAR IS ="+ gear);
+}
+}
+
+//File TestVehical.java
+package exp3;
+import java.util.Scanner;
+public class TestVehical
+{
+static Scanner sc=new Scanner(System.in);
+public static void main(String[] args)
+{
+Vehicle v=null; // vehicle interface reference created
+int y,z; //variable to choose vehicle
+do
+{
+System.out.println("SELECT VEHICLE");
+System.out.println("1.BICYCLE");
+System.out.println("2.CAR ");
+System.out.println("3.BIKE");
+System.out.println("4.Exit");
+System.out.println("Choice::");
+y=sc.nextInt();
+switch(y)
+{
+case 1:
+v=new Bicycle(); //object of bicycle class
+break;
+case 2:
+v= new Car(); //object of car class
+break;
+case 3:
+v=new Bike(); //object of bike class
+break;
+case 4:
+System.exit(0);
+default:
+System.out.println("INVALID INPUT");
+}
+
+do{
+System.out.println("SELECT VEHICLE");
+System.out.println("1. Speed Up");
+System.out.println("2. Change gear");
+System.out.println("3. Apply Brakes");
+System.out.println("4. Display");
+System.out.println("5. Change vehical");
+System.out.println("Choice::");
+
+z = sc.nextInt();
+switch(z)
+{
+case 1:
+v.speedUp();
+break;
+case 2:
+System.out.print("which gear you want? ");
+int a=sc.nextInt();
+v.gearChange(a);
+break;
+case 3:
+v.applyBrakes();
+break;
+case 4:
+v.display();
+break;
+default:
+System.out.println("Invalid Input");
+}
+}while(z != 5);
+}while(y != 4);
+}
+}

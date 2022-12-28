@@ -1,0 +1,129 @@
+Aim:
+ Implement a generic program using any collection class to count the number of elements
+in a collection that have a specific property such as even numbers, odd number, prime number
+and palindromes.
+Objectives: To learn the concept templates and generic programming
+Theory:
+Generics in Java
+Generics means parameterized types. The idea is to allow type (Integer, String, etc.,
+and user-defined types) to be a parameter to methods, classes, and interfaces. Using
+Generics, it is possible to create classes that work with different data types. An entity such as
+class, interface, or method that operates on a parameterized type is a generic entity.
+Program:
+//File Number.java
+package exp7;
+public class Number
+{
+public <T> Boolean isEvenOdd(T a)
+{
+if(Integer.parseInt(a.toString()) % 2 == 0) //converting a into int
+return true;
+else
+return false;
+}
+
+public <T> boolean isPrime(T a)
+{
+int x = Integer.parseInt(a.toString());
+boolean flag= true;
+if(x == 1) //check if a = 1
+return true;
+if (x == 2) //check if a = 2
+return true;
+if(x % 2 == 0 && x > 2) //check if a >2 and a mod 2 =0
+return false;
+for(int i=3; i< x; i++)
+{
+if( x % i == 0) // check if mod = 0
+
+{
+flag = false;
+break;
+}
+
+}
+if(flag == true) // checking temp = 1 or not
+
+return true;
+
+else
+return false;
+}
+public < T > boolean isPallindrome(T s)
+{
+String s1 = (String) s;
+StringBuffer sb = new StringBuffer(s1); // creating stringbuffer
+String ss = new String(sb.reverse()); //reversing stringbuffer
+if(s1.equals(ss)) //checking both strings are equal or not
+return true; //if both string are equal
+else
+return false; //if both string are different
+}
+}
+
+//File TestNumber .java
+package exp7;
+import java.util.Scanner;
+public class TestNumber
+{
+public static void main(String args[]) //main method
+{
+Scanner sc=new Scanner(System.in);
+int num, x;
+String s;
+Number n1 = new Number();
+do
+{
+System.out.println("MENU \n 1:Prime Numer"
++"\n2:Even Odd number \n3:Plaindrome String"
++"\n4:Exit \n Choice ::");
+x = sc.nextInt();
+
+switch(x)
+{
+case 1: //Prime number
+System.out.print("Enter intger number: ");
+num = sc.nextInt(); //read number
+if(n1.isPrime(num))
+{
+System.out.println("Number is prime");
+}
+else
+{
+System.out.println("Number is not prime");
+}
+break;
+case 2: //Even Odd number
+System.out.print("Enter intger number: ");
+num = sc.nextInt(); //read number
+if(n1.isEvenOdd(num))
+{
+System.out.println("Number is even");
+}
+else
+{
+System.out.println("Number is Odd");
+}
+break;
+case 3: //Palindrome String
+System.out.print("Enter String: ");
+s = sc.next(); //read number
+if(n1.isPallindrome(s))
+{
+System.out.println("String is Palindrome");
+}
+else
+{
+System.out.println("String is not Palindrome");
+}
+break;
+case 4: //Exited
+System.out.println(" Program closed ");
+System.exit(0);
+default: //default case
+System.out.println(" Invalid choice... ");
+}
+}while(x != 4); //loop breaks when input x=4
+sc.close(); //closing of scanner class
+}
+}
